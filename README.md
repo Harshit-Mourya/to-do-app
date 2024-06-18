@@ -1,3 +1,3 @@
 #To-Do App
 
-This is a basic to-do app
+This is a basic to-do app created using React.js
