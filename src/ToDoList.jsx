@@ -63,7 +63,7 @@ export default function ToDoList() {
       <br />
       <hr />
       <h3>Tasks:</h3>
-      <ul>
+      <ul className="ulist">
         {todos.map((todo) => (
           <li key={todo.id} className="liItem">
             <div>

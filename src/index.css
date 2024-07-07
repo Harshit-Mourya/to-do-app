@@ -91,6 +91,11 @@ button:focus-visible {
   list-style-type: none;
 }
 
+.ulist {
+  margin: 0;
+  padding: 0;
+}
+
 @media (width > 420px) {
   .addTask input {
     width: 20rem;
