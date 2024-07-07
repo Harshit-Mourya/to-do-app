@@ -25,10 +25,11 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-content: start center;
 
   min-width: 320px;
   min-height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -89,6 +90,9 @@ button:focus-visible {
   justify-content: space-between;
   margin: 0.5rem 0;
   list-style-type: none;
+}
+
+.container {
 }
 
 @media (width > 420px) {
