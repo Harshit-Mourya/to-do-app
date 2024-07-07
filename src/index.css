@@ -92,9 +92,6 @@ button:focus-visible {
   list-style-type: none;
 }
 
-.container {
-}
-
 @media (width > 420px) {
   .addTask input {
     width: 20rem;
