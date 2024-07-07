@@ -57,13 +57,13 @@ button:focus-visible {
 
 .delBtn {
   /* color: black; */
-  background-color: #cb0e00;
+  background-color: transparent;
   padding: 0.2rem 0.5rem;
 }
 
 .doneBtn {
   padding: 0.2rem 0.5rem;
-  background-color: #006f04;
+  background-color: transparent;
 }
 
 @media (prefers-color-scheme: light) {
@@ -85,7 +85,10 @@ button:focus-visible {
 }
 
 .liItem {
+  display: flex;
+  justify-content: space-between;
   margin: 0.5rem 0;
+  list-style-type: none;
 }
 
 @media (width > 420px) {

@@ -1,10 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 export default function ToDoList() {
-  let [todos, setTodos] = useState([
-    { task: "Your tasks appear here", id: uuidv4(), isDone: false },
-  ]);
+  let [todos, setTodos] = useState(
+    localStorage.getItem("todos")
+      ? JSON.parse(localStorage.getItem("todos"))
+      : [{ task: "Your tasks appear here", id: uuidv4(), isDone: false }]
+  );
 
   let [newTodo, setNewTodo] = useState("");
 
@@ -31,7 +33,7 @@ export default function ToDoList() {
         if (todo.id == id) {
           return {
             ...todo,
-            isDone: true,
+            isDone: !todo.isDone,
           };
         } else {
           return todo;
@@ -39,6 +41,10 @@ export default function ToDoList() {
       });
     });
   };
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   return (
     <div className="container">
@@ -60,27 +66,34 @@ export default function ToDoList() {
       <ul>
         {todos.map((todo) => (
           <li key={todo.id} className="liItem">
-            <span
-              style={
-                todo.isDone
-                  ? { textDecorationLine: "line-through", color: "#00bf06" }
-                  : {}
-              }
-            >
-              {todo.task}
-            </span>
-            &nbsp;&nbsp;
-            <button onClick={() => deleteTodo(todo.id)} className="delBtn">
-              X
-            </button>
-            &nbsp;&nbsp;
-            <button
-              onClick={() => markAsDone(todo.id)}
-              className="doneBtn"
-              style={todo.isDone ? { display: "none" } : {}}
-            >
-              &#10004;
-            </button>
+            <div>
+              <button
+                onClick={() => markAsDone(todo.id)}
+                className="doneBtn"
+                style={
+                  todo.isDone
+                    ? { color: "#00bf06", border: "1px solid #00bf06" }
+                    : {}
+                }
+              >
+                &#10004;
+              </button>
+              &nbsp;&nbsp;
+              <span
+                style={
+                  todo.isDone
+                    ? { textDecorationLine: "line-through", color: "#00bf06" }
+                    : {}
+                }
+              >
+                {todo.task}
+              </span>
+            </div>
+            <div>
+              <button onClick={() => deleteTodo(todo.id)} className="delBtn">
+                <i className="fa-solid fa-trash-can"></i>
+              </button>
+            </div>
           </li>
         ))}
       </ul>
